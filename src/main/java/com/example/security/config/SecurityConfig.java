@@ -11,10 +11,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/public").permitAll()
-        .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
-                .logout(Customizer.withDefaults());
+        http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/public").permitAll()  // anyone can access this API
+        .anyRequest().authenticated())                                                        // everything else requires login
+                .formLogin(Customizer.withDefaults())                                         // enables default login page
+                .logout(Customizer.withDefaults());                                           // enable logout functionality
         return http.build();
     }
 }
